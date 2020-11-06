@@ -4,7 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "build:main": "ng build --configuration=main",
+    "build:development": "ng build --configuration=development",
     "build": "ng build",
+    "deploy": "firebase deploy",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
