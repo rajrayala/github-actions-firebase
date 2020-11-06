@@ -1,0 +1,45 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the main branch
+on:
+  push:
+    branches: [ development ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Use Node.js 10.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+
+      # Runs a set of commands using the runners shell
+      - name: Installing Dependencies
+        run: npm install
+      - name: Installing Angular CLI
+        run: |
+          env
+          npm install -g @angular/cli
+          echo "$(ng --version)"
+      - name: Angular Production Build
+        run: |
+          ng build --prod --c=development
+      - name: firebase-install
+        run: |
+          npm install -g firebase-tools
+      - name: firebase-deploy-step
+        run: |
+          firebase deploy --project ${{ secrets.FIREBASE_PROJECT_NAME }} --token ${{ secrets.FIREBASE_TOKEN }} --debug

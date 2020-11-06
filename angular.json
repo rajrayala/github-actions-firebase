@@ -80,6 +80,30 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "development": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
@@ -94,6 +118,9 @@
             },
             "main": {
               "browserTarget": "github-actions-firebase:build:main"
+            },
+            "development": {
+              "browserTarget": "github-actions-firebase:build:development"
             }
           }
         },
@@ -151,6 +178,9 @@
             },
             "main": {
               "devServerTarget": "github-actions-firebase:serve:main"
+            },
+            "development": {
+              "devServerTarget": "github-actions-firebase:serve:development"
             }
           }
         },
